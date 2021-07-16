@@ -21,6 +21,9 @@ export class SignInComponent implements OnInit {
       username: this.username,
       password: this.password,
     };
-    localStorage.setItem('user', JSON.stringify(user));
+    if(this.username!=='' && this.password!==''){
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    
   }
 }
