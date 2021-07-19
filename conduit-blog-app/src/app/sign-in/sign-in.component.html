@@ -3,27 +3,29 @@
     <div class="col">
       {{ user | json }}
       <form class="form-signin" (ngSubmit)="submitForm()" #signUpForm="ngForm">
-        <div class="form-group">
-          <img
+        <img
             class="mb-4 image"
             src="../../assets/conduit_logo.png"
             alt="logo"
           />
           <h3 class="h3 mb-3 font-weight-normal">Sign in</h3>
+        <div class="form-group">
           <label for="exampleInputEmail1" class="sr-only">Email address</label>
+          
           <input
             type="email"
-            class="form-control ng-invalid ng-untouched"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            class="form-control is-invalid ng-invalid ng-untouched"
+            [class.is-invalid]="email.invalid && email.touched"
             placeholder="Enter email"
             [(ngModel)]="user.email"
             name="email"
-            required
             #email="ngModel"
           />
-          <div [hidden]="email.valid||email.untouched"  class="alert alert-danger">
-            Name is required
+         
+          <div [hidden]="email.valid||email.untouched"  >
+            
+            <small style="color: crimson;">Email is required</small>
+            
           </div>
           <small id="emailHelp" class="form-text text-muted"
             >We'll never share your email with anyone else.</small
@@ -35,10 +37,11 @@
           <input
             type="password"
             class="form-control ng-invalid"
-            id="exampleInputPassword1"
+            [class.is-invalid]="userpassword.invalid && userpassword.touched"
             placeholder="Password"
             [(ngModel)]="user.password"
             name="password"
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
             required
             #userpassword="ngModel"
           />
