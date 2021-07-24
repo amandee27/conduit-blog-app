@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+import {UserDetail}  from './model/userDetail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailService {
-  datalogin:string='';
+  datalogin?:UserDetail;
   id:number=0;
+  signedIn:boolean=false;
   constructor() { 
     this.id=Math.floor(Math.random() * 10)
     console.log("This is server constructor",this.id);
   }
 
-  private userDetailSource = new BehaviorSubject<string | null>(null);
+  private userDetailSource = new BehaviorSubject<UserDetail | null>(null);
+  private isSignedInSource = new  BehaviorSubject<boolean | null>(null);
   
   userDetail$ = this.userDetailSource.asObservable();
-  userLoginDetail(detail: string) {
+  isSignedIn$= this.isSignedInSource.asObservable();
+
+  userLoginDetail(detail: UserDetail) {
     this.datalogin=detail;
     console.log("this is user detail",detail);
-    this.userDetailSource.next(detail);
+    this.userDetailSource.next(this.datalogin);
   }
 
-  usertest(){
-    console.log("This is a test");
-    return this.datalogin;
+  isSignedInUser(signed:boolean){
+    this.signedIn=signed;
+    console.log(this.signedIn);
   }
+
 }

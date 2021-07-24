@@ -11,10 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import {UserDetailService} from './user-detail.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, HomeComponent, SignUpComponent, UserComponent],
-  imports: [BrowserModule, AppRoutingModule, NgbModule,FormsModule,HttpClientModule],
+  declarations: [AppComponent, SignInComponent, HomeComponent, SignUpComponent, UserComponent, NavBarComponent, FooterComponent],
+  imports: [BrowserModule, AppRoutingModule, NgbModule,FormsModule,HttpClientModule,NgbModule],
   providers: [UserDetailService],
   bootstrap: [AppComponent],
 })

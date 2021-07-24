@@ -25,19 +25,18 @@ export class UserComponent implements OnInit {
         console.log("here user data",data);
         
         if(data!==null){
-          const obj = JSON.parse(data);
-          let token=obj.user.token;
-          this.username=obj.user.username;
-          this.email=obj.user.email;
-          this.bio=obj.user.bio;
-          this.image=obj.user.image;
+          let token=data.user.token;
+          this.username=data.user.username;
+          this.email=data.user.email;
+          this.bio=data.user.bio;
+          this.image=data.user.image;
           localStorage.setItem("token",JSON.stringify(token));
         }
         
       }
     );
 
-    this.userDetailService.usertest();
+    
   }
 
   ngOnDestroy() {

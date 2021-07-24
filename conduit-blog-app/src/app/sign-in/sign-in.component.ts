@@ -1,9 +1,11 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,  EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import {User} from '../model/user';
 import {UserService} from '../user.service';
 import {UserDetailService} from '../user-detail.service';
+import {DataService} from '../data.service';
+import {UserDetail} from '../model/userDetail';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,11 +15,12 @@ import {UserDetailService} from '../user-detail.service';
 })
 export class SignInComponent implements OnInit {
   user=new User('','');
-  userlogin:string='';
+  userlogin?:UserDetail;
   logged:boolean=false;
-  constructor(private userService:UserService,private route:Router, private userDetail:UserDetailService) {}
+  constructor(private userService:UserService,private route:Router, private userDetailService:UserDetailService) {}
 
   ngOnInit(): void {}
+
   
   submitForm() {
     if(this.user.email!=='' && this.user.email!==''){
@@ -27,9 +30,14 @@ export class SignInComponent implements OnInit {
      this.userService.login(this.user).subscribe(
        data=>{ 
           console.log("Success",data);
-          this.userlogin=JSON.stringify(data);
-          console.log("This is signin submit form()",this.userDetail.id);
-          this.userDetail.userLoginDetail(this.userlogin);
+          this.userlogin=data;
+          console.log( this.userlogin);
+          console.log("This is signin submit form()",this.userDetailService.id);
+          if(this.userlogin!==undefined){
+            this.userDetailService.userLoginDetail(this.userlogin);
+            this.userDetailService.isSignedInUser(true);
+          }
+         
           this.logged=true;
           this.route.navigate(['/user']);
       },
