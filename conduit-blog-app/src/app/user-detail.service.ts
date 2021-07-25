@@ -29,6 +29,7 @@ export class UserDetailService {
   isSignedInUser(signed:boolean){
     this.signedIn=signed;
     console.log(this.signedIn);
+    this.isSignedInSource.next(this.signedIn);
   }
 
 }

@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
           this.email=data.user.email;
           this.bio=data.user.bio;
           this.image=data.user.image;
-          localStorage.setItem("token",JSON.stringify(token));
+          localStorage.setItem("token",token);
         }
         
       }
