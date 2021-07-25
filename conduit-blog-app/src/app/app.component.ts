@@ -21,15 +21,14 @@ export class AppComponent implements OnInit {
     let token = localStorage.token;
     console.log(token);
     this.userService.getCurrentUser(token).subscribe((data) => {
-      console.log('Current user data ', data);
       if (data.user) {
         this.signedIn = true;
         this.userDetailService.isSignedInUser(this.signedIn);
+        this.userDetailService.userLoginDetail(data);
       }
     });
   }
   ngOnDestroy() {
-    // prevent memory leak when component destroyed
     this.subscription?.unsubscribe();
   }
 }

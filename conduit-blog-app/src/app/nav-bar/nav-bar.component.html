@@ -8,18 +8,29 @@
         <li class="nav-item active">
            <a class="nav-link" routerLink="/home" (click)="isMenuCollapsed = true">Home <span class="sr-only">(current)</span></a>
         </li>
-        
+         <ng-template [ngIf]="!signedIn">
           <li class="nav-item">
             <a class="nav-link" routerLink="/sign-in" (click)="isMenuCollapsed = true" >Sign In</a>
           </li>
+         </ng-template>
+          
        
+        <ng-template [ngIf]="!signedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/sign-up" (click)="isMenuCollapsed = true">Sign Up</a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="signedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/user" (click)="isMenuCollapsed = true" >User</a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="signedIn">
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="isMenuCollapsed = true" (click)="logout($event)">Logout</a>
+          </li>
+        </ng-template>
         
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sign-up" (click)="isMenuCollapsed = true">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="/sign-in" (click)="isMenuCollapsed = true" (click)="logout()">Logout</a>
-        </li>
       </ul>
     </div>
   </nav>

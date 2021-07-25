@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserDetailService } from '../user-detail.service';
 
@@ -10,14 +11,21 @@ import { UserDetailService } from '../user-detail.service';
 export class NavBarComponent implements OnInit {
   public isMenuCollapsed = true;
   subscription?: Subscription;
-  constructor(private userDetailService: UserDetailService) {}
+  signedIn: boolean = false;
+  constructor(
+    private userDetailService: UserDetailService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.userDetailService.isSignedIn$.subscribe((data) => {
-      console.log('This is nav bar subscription data data', data);
+      this.signedIn = data;
     });
   }
-  logout() {
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    this.userDetailService.isSignedInUser(false);
     localStorage.removeItem('token');
+    this.router.navigate(['./sign-in']);
   }
 }
