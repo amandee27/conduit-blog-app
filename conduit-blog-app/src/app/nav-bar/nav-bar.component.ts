@@ -9,13 +9,13 @@ import { UserDetailService } from '../user-detail.service';
 })
 export class NavBarComponent implements OnInit {
   public isMenuCollapsed = true;
-  //subscription?: Subscription;
+  subscription?: Subscription;
   constructor(private userDetailService: UserDetailService) {}
 
   ngOnInit(): void {
-    // this.subscription = this.userDetailService.isSignedIn$.subscribe((data) => {
-    //   console.log('This is nav bar subscription data data', data);
-    // });
+    this.subscription = this.userDetailService.isSignedIn$.subscribe((data) => {
+      console.log('This is nav bar subscription data data', data);
+    });
   }
   logout() {
     localStorage.removeItem('token');
