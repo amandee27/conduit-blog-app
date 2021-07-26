@@ -10,10 +10,7 @@ export class UserDetailService {
   id: number = 0;
   signedIn: boolean = false;
   signedInData: any;
-  constructor() {
-    this.id = Math.floor(Math.random() * 10);
-    console.log('This is server constructor', this.id);
-  }
+  constructor() {}
 
   private userDetailSource = new BehaviorSubject<UserDetail | null>(null);
   private isSignedInSource = new BehaviorSubject<boolean>(false);
@@ -28,7 +25,6 @@ export class UserDetailService {
 
   isSignedInUser(signed: boolean) {
     this.signedIn = signed;
-    console.log(this.signedIn);
     this.isSignedInSource.next(this.signedIn);
   }
 }

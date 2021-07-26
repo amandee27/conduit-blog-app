@@ -1,13 +1,16 @@
-<div class="container text-center">
+<div class="container ">
   <div class="row">
     <div class="col">
       <form class="form-signin" (ngSubmit)="submitForm()" #signUpForm="ngForm">
-        <img
-            class="mb-4 image"
+        <div class="image-center">
+          <img
+            class="image "
             src="../../assets/conduit_logo.png"
             alt="logo"
           />
-          <h3 class="h3 mb-3 font-weight-normal">Sign in</h3>
+        </div>
+        
+          <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
         <div class="form-group">
           <label for="exampleInputEmail1" class="sr-only">Email address</label>
           
@@ -40,16 +43,9 @@
             placeholder="Password"
             [(ngModel)]="user.password"
             name="password"
-            
             required
             #userpassword="ngModel"
           />
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1"
-            >Check me out</label
-          >
         </div>
         <button
           class="btn btn-lg btn-primary btn-block"

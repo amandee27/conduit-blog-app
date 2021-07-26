@@ -18,7 +18,6 @@ export class UserComponent implements OnInit {
   constructor(private userDetailService: UserDetailService) {}
 
   ngOnInit(): void {
-    console.log('user component ngOnInit', this.userDetailService.id);
     this.subscription = this.userDetailService.userDetail$.subscribe((data) => {
       if (data !== null) {
         let token = data.user.token;

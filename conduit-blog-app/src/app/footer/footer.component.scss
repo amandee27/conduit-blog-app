@@ -1,6 +1,22 @@
+.linkFormat {
+  color: white;
+  text-decoration: none;
+}
+.columnFormat {
+  margin-top: 15px;
+  margin-left: 10px;
+}
+.middleColumnFormat {
+  margin-top: 15px;
+}
+
+.contact:hover {
+  text-decoration: none;
+}
+
 .element {
   bottom: 0;
   width: 100%;
-  height: 200px;
+  height: 150px;
   background: grey;
 }

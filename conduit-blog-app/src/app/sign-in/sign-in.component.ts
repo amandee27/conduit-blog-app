@@ -32,9 +32,8 @@ export class SignInComponent implements OnInit {
         console.log('This is signin submit form()', this.userDetailService.id);
         this.userDetailService.userLoginDetail(data);
         this.userDetailService.isSignedInUser(true);
-
         this.logged = true;
-        this.route.navigate(['/user']);
+        this.route.navigate(['/profile']);
       },
       (error) => console.log('Failed', error)
     );
