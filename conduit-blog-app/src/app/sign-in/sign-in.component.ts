@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { UserDetailService } from '../user-detail.service';
 import { DataService } from '../data.service';
 import { UserDetail } from '../model/userDetail';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,11 +23,10 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submitForm() {
+  submitForm(signInForm: NgForm) {
     if (this.user.email !== '' && this.user.email !== '') {
       localStorage.setItem('user', JSON.stringify(this.user));
     }
-    console.log(JSON.stringify({ user: this.user }));
     this.userService.login(this.user).subscribe(
       (data) => {
         console.log('This is signin submit form()', this.userDetailService.id);
@@ -38,7 +38,6 @@ export class SignInComponent implements OnInit {
       (error) => console.log('Failed', error)
     );
 
-    this.user.email = '';
-    this.user.password = '';
+    signInForm.resetForm();
   }
 }

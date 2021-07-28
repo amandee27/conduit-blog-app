@@ -31,5 +31,6 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit() {
     console.log(this.profileForm.value);
+    this.profileForm.reset();
   }
 }
