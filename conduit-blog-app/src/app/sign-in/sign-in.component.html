@@ -16,17 +16,18 @@
           
           <input
             type="email"
-            class="form-control is-invalid ng-invalid ng-untouched"
+            class="form-control"
             [class.is-invalid]="email.invalid && email.touched"
             placeholder="Enter email"
             [(ngModel)]="user.email"
             name="email"
+            required
             #email="ngModel"
           />
          
-          <div [hidden]="email.valid||email.untouched"  >
+          <div [hidden]="email.valid||email.untouched"  class="invalid-feedback">
             
-            <small style="color: crimson;">Email is required</small>
+            <small >Email is required</small>
             
           </div>
           <small id="emailHelp" class="form-text text-muted"
@@ -38,7 +39,8 @@
           <label for="exampleInputPassword1" class="sr-only">Password</label>
           <input
             type="password"
-            class="form-control ng-invalid"
+            class="form-control"
+            pattern=".{7,}"
             [class.is-invalid]="userpassword.invalid && userpassword.touched"
             placeholder="Password"
             [(ngModel)]="user.password"
@@ -46,6 +48,13 @@
             required
             #userpassword="ngModel"
           />
+          <div [hidden]="userpassword.untouched || userpassword.errors===null"  class="invalid-feedback">
+           
+              <small *ngIf="userpassword.errors?.required">password is required</small>
+              <small *ngIf="userpassword.errors?.pattern">password must be longer than 7 characters</small>
+  
+          </div>
+          <div hidden>{{userpassword.errors|json}}</div>
         </div>
         <button
           class="btn btn-lg btn-primary btn-block"
