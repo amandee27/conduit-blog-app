@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserService } from '../user.service';
 import { UserDetailService } from '../user-detail.service';
-import { DataService } from '../data.service';
-import { UserDetail } from '../model/userDetail';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,8 +11,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  user = new User('', '');
-  logged: boolean = false;
+  user: User = { email: '', password: '' };
+
   constructor(
     private userService: UserService,
     private route: Router,
@@ -24,20 +22,14 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm(signInForm: NgForm) {
-    if (this.user.email !== '' && this.user.email !== '') {
-      localStorage.setItem('user', JSON.stringify(this.user));
-    }
     this.userService.login(this.user).subscribe(
       (data) => {
-        console.log('This is signin submit form()', this.userDetailService.id);
         this.userDetailService.userLoginDetail(data);
         this.userDetailService.isSignedInUser(true);
-        this.logged = true;
+        signInForm.resetForm();
         this.route.navigate(['/profile']);
       },
       (error) => console.log('Failed', error)
     );
-
-    signInForm.resetForm();
   }
 }
