@@ -12,6 +12,7 @@ import {
   Validators,
   FormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -34,7 +35,9 @@ export class SignUpComponent implements OnInit {
   });
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private UserDetailService: UserDetailService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {}
@@ -46,11 +49,14 @@ export class SignUpComponent implements OnInit {
     this.userService.signUp(this.newUser).subscribe(
       (data) => {
         console.log(data);
+        this.UserDetailService.userLoginDetail(data);
+        this.UserDetailService.isSignedInUser(true);
+        this.profileForm.reset();
+        this.route.navigate(['/profile']);
       },
       (error) => {
         console.log(error);
       }
     );
-    this.profileForm.reset();
   }
 }

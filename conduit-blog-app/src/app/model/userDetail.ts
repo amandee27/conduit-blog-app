@@ -1,11 +1,11 @@
-export interface UserDetail{
-    user:Content;
+export interface UserDetail {
+  user: UserInfo;
 }
 
-export interface Content{
-    username:string,
-    email:string,
-    token:string,
-    bio:string,
-    image:string
+export interface UserInfo {
+  username: string;
+  email: string;
+  token: string;
+  bio?: string;
+  image?: string;
 }

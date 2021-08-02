@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserDetailService } from '../user-detail.service';
+import { UserDetail, UserInfo } from '../model/userDetail';
 
 @Component({
   selector: 'app-user',
@@ -9,11 +10,7 @@ import { UserDetailService } from '../user-detail.service';
 })
 export class UserComponent implements OnInit {
   subscription?: Subscription;
-  subscriptionSignedIn?: Subscription;
-  username: string = '';
-  email: string = '';
-  bio: string = '';
-  image: string = '';
+  user?: UserInfo;
 
   constructor(private userDetailService: UserDetailService) {}
 
@@ -21,10 +18,7 @@ export class UserComponent implements OnInit {
     this.subscription = this.userDetailService.userDetail$.subscribe((data) => {
       if (data !== null) {
         let token = data.user.token;
-        this.username = data.user.username;
-        this.email = data.user.email;
-        this.bio = data.user.bio;
-        this.image = data.user.image;
+        this.user = data.user;
         localStorage.setItem('token', token);
       }
     });
@@ -32,6 +26,5 @@ export class UserComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-    this.subscriptionSignedIn?.unsubscribe();
   }
 }

@@ -3,13 +3,13 @@
     <div class="col">
       <div class="row">
         <div class="col profileName">
-          <span>{{ username }}</span>
+          <span>{{ user?.username }}</span>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <img
-            [src]="image"
+            [src]="user?.image"
             alt=""
             class="profilePic rounded mx-auto d-block"
           />
@@ -20,7 +20,7 @@
             <h5>Bio</h5>
           </div>
           <div class="col text-justify">
-            {{ bio }}
+            {{  user?.bio }}
           </div>
       </div>
       <div class="row ">
@@ -28,7 +28,7 @@
           <h5>Email</h5>
         </div>
         <div class="col text-justify">
-          {{ email }}
+          {{ user?.email }}
         </div>
       </div>
     </div>

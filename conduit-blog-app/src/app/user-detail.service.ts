@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { UserDetail } from './model/userDetail';
+import { NewUser } from './model/newUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserDetailService {
   datalogin?: UserDetail;
+  signUpDetail?: NewUser;
   id: number = 0;
   signedIn: boolean = false;
   signedInData: any;

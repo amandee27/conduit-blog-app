@@ -28,6 +28,6 @@ export class UserService {
   }
 
   signUp(newUser: NewUser) {
-    return this._http.post<NewUser>(this._signUpUrl, { user: newUser });
+    return this._http.post<UserDetail>(this._signUpUrl, { user: newUser });
   }
 }
