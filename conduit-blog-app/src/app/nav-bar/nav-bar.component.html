@@ -4,7 +4,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
            <a class="nav-link" routerLink="/"   routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }" (click)="isMenuCollapsed = true">Home <span class="sr-only">(current)</span></a>
@@ -26,12 +26,29 @@
             <a class="nav-link" routerLink="/profile" routerLinkActive="active" (click)="isMenuCollapsed = true" >Profile</a>
           </li>
         </ng-template>
-        <ng-template [ngIf]="signedIn">
-          <li class="nav-item">
-            <a class="nav-link" href="#" (click)="isMenuCollapsed = true" (click)="logout($event)">Logout</a>
-          </li>
-        </ng-template>
         
+        
+      </ul>
+      <ul *ngIf=signedIn class="navbar-nav">
+        <li ngbDropdown class="nav-item dropdown">
+          <div  ngbDropdownToggle class="nav-link dropdown-toggle user-action" data-toggle="dropdown" >
+            <img *ngIf="userImage; else defaulImage" [src]="userImage" class="user-image" alt="">  
+            
+            <ng-template #defaulImage><img  src="../../assets/default_user.png" class="user-image" alt=""></ng-template>
+            <span>{{userName| titlecase}}</span>
+            <b class="caret"></b>
+          </div>
+          
+          <div  ngbDropdownMenu class="dropdown-menu">
+            <li ngbDropdownItem class="dropdown-item ">
+              <a class="item" routerLink="/profile" routerLinkActive="active" (click)="isMenuCollapsed = true" >Profile</a>
+            </li>
+            <li ngbDropdownItem class="dropdown-item">
+              <a    class="item" routerLink="/sign-in" routerLinkActive="active"  (click)="logout($event)">Logout</a>
+            </li>
+
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
