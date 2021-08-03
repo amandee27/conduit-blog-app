@@ -14,6 +14,7 @@ import { UserDetailService } from './user-detail.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ValidationDirective } from './validation.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserComponent,
     NavBarComponent,
     FooterComponent,
+    ValidationDirective,
   ],
   imports: [
     BrowserModule,

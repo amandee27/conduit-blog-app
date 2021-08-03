@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { UserService } from '../user.service';
 import { NewUser } from '../model/newUser';
 import { UserDetailService } from '../user-detail.service';
+import { userNameValidator } from '../validation.directive';
 
 import {
   FormGroup,
@@ -31,7 +32,7 @@ export class SignUpComponent implements OnInit {
   profileForm = this.formBuilder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
   constructor(
     private formBuilder: FormBuilder,
@@ -58,5 +59,9 @@ export class SignUpComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  get profileFormControl() {
+    return this.profileForm.controls;
   }
 }
