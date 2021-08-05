@@ -60,8 +60,11 @@
           class="btn btn-lg btn-primary btn-block"
           type="submit"
           [disabled]="!signUpForm.form.valid"
+          (click)="Issubmit(true)"
         >
-          Sign In
+          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit===true"></span>
+          <span  *ngIf="isSubmit===false">Sign In</span> 
+          <span  *ngIf="isSubmit===true">Loading ....</span>
         </button>
       </form>
     </div>
