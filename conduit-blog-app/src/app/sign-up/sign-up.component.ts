@@ -30,7 +30,10 @@ export class SignUpComponent implements OnInit {
   newUser: NewUser = { username: '', email: '', password: '' };
 
   profileForm = this.formBuilder.group({
-    username: ['', Validators.required],
+    username: [
+      '',
+      [Validators.required, userNameValidator(/^[A-Za-z0-9_]+$/g)],
+    ],
     email: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
