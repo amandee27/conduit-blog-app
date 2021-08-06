@@ -62,9 +62,9 @@
           [disabled]="!signUpForm.form.valid"
           (click)="Issubmit(true)"
         >
-          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit===true"></span>
-          <span  *ngIf="isSubmit===false">Sign In</span> 
-          <span  *ngIf="isSubmit===true">Loading ....</span>
+          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit"></span>
+          <span  *ngIf="!isSubmit">Sign In</span> 
+          <span  *ngIf="isSubmit">loading ....</span>
         </button>
       </form>
     </div>
