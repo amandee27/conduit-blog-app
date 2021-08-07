@@ -28,6 +28,7 @@ export class SignUpComponent implements OnInit {
   // });
 
   newUser: NewUser = { username: '', email: '', password: '' };
+  isSubmit: boolean = false;
 
   profileForm = this.formBuilder.group({
     username: [
@@ -57,6 +58,7 @@ export class SignUpComponent implements OnInit {
         this.UserDetailService.isSignedInUser(true);
         this.profileForm.reset();
         this.route.navigate(['/profile']);
+        this.isSubmit = false;
       },
       (error) => {
         console.log(error);
@@ -66,5 +68,8 @@ export class SignUpComponent implements OnInit {
 
   get profileFormControl() {
     return this.profileForm.controls;
+  }
+  Issubmit(isSubmit: boolean) {
+    this.isSubmit = isSubmit;
   }
 }
