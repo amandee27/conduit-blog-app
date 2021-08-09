@@ -31,10 +31,7 @@ export class SignUpComponent implements OnInit {
   isSubmit: boolean = false;
 
   profileForm = this.formBuilder.group({
-    username: [
-      '',
-      [Validators.required, userNameValidator(/^[A-Za-z0-9_]+$/g)],
-    ],
+    username: ['', [Validators.required, userNameValidator(/^[A-Za-z0-9_]+$/)]],
     email: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
