@@ -30,7 +30,7 @@
         
       </ul>
       <ul *ngIf=signedIn class="navbar-nav">
-        <li ngbDropdown class="nav-item dropdown">
+        <li ngbDropdown display="dynamic" placement="bottom-right" class="nav-item dropdown">
           <div  ngbDropdownToggle class="nav-link dropdown-toggle user-action" data-toggle="dropdown" >
             <img *ngIf="userImage; else defaulImage" [src]="userImage" class="user-image" alt="">  
             
