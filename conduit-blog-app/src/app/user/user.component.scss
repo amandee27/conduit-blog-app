@@ -1,15 +1,57 @@
 .profilePic {
-  width: 300px;
-  margin-top: 30px;
+  width: 100px;
   margin-bottom: 30px;
-  height: 337px;
+  height: 100px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
-.profileName {
-  margin-top: 30px;
-  text-align: center;
-  font-size: xx-large;
-  font-weight: bold;
-  text-transform: capitalize;
+body {
+  background-color: #f9f9fa;
+}
+
+.padding {
+  padding: 3rem !important;
+}
+
+.card {
+  border-radius: 5px;
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  border: none;
+  margin-bottom: 30px;
+}
+.user-card-full {
+  overflow: hidden;
+}
+
+.m-r-0 {
+  margin-right: 0px;
+}
+
+.m-l-0 {
+  margin-left: 0px;
+}
+.user-card-full .user-profile {
+  border-radius: 5px 0 0 5px;
+}
+.bg-c-lite-green {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f29263),
+    to(#ee5a6f)
+  );
+  background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+.user-profile {
+  padding: 20px 0;
+}
+
+.card-block {
+  padding: 1.25rem;
+}
+
+.b-b-default {
+  border-bottom: 1px solid #e0e0e0;
 }
