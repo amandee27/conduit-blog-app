@@ -12,6 +12,7 @@ export class UserService {
   _urlNew: string = 'http://localhost:3000/api/user';
   _token: string = 'Token ';
   _signUpUrl: string = 'http://localhost:3000/api/users';
+  _getArticles: string = 'http://localhost:3000/api/articles';
   constructor(private _http: HttpClient) {}
   login(user: User) {
     return this._http.post<UserDetail>(this._url, { user: user });
@@ -29,5 +30,15 @@ export class UserService {
 
   signUp(newUser: NewUser) {
     return this._http.post<UserDetail>(this._signUpUrl, { user: newUser });
+  }
+
+  getArticles(token: string) {
+    let autherizationHeader = this._token + token;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.get<any>(this._getArticles, httpOptions);
   }
 }

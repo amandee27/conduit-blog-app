@@ -15,6 +15,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ValidationDirective } from './validation.directive';
+import { AuthorProfileComponent } from './author-profile/author-profile.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ValidationDirective } from './validation.directive';
     NavBarComponent,
     FooterComponent,
     ValidationDirective,
+    AuthorProfileComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

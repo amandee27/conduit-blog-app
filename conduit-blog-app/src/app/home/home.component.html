@@ -1,4 +1,4 @@
-<ngb-carousel >
+<ngb-carousel *ngIf="!isSignedIn">
   <ng-template ngbSlide>
     <div style="background-color: darkgray; text-align: center; height: 400px">
       <div>
@@ -23,6 +23,35 @@
     </div>
   </ng-template>
 </ngb-carousel>
-      
+<div *ngIf="isSignedIn" class="pt-3" >
+
+  <div class="card mt-3"  *ngFor="let article of articles; index as i;">
+    <div class="card-header">
+      {{article.description}}
+    </div>
+    <div class="card-body">
+      <div class=" my-2">
+        <ng-template #tipContent style="background-color: wheat;">
+        <div>
+          <a routerLink="./author-profile"  class="tooltipFormat">
+            <b>{{article.author.username}}</b>
+          <span>{{article.author.bio}}</span>
+          </a>
+          
+        </div></ng-template>
+        <a routerLink="./author-profile">
+          <img class=" articleImage" [src]="article.author.image" alt="">
+          <span class="username" [ngbTooltip]="tipContent"><small>{{article.author.username}}</small></span>
+        </a>
+      </div>
+      <h5 class="card-title"> {{article.title}}</h5>
+      <!-- <img class="card-img-left articleImage" [src]="image" alt="Card image cap"> -->
+      <p class="card-text">{{article.body}}</p>
+      <a routerLink="./article" class="btn btn-primary">Read</a>
+    </div>
+  </div>
+</div>
+
+     
  
 
