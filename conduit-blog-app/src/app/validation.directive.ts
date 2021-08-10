@@ -9,6 +9,9 @@ export class ValidationDirective {
 }
 export function userNameValidator(nameRe: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
+    if (control.value === '') {
+      return null;
+    }
     const pass = nameRe.test(control.value);
     return pass ? null : { userName: { value: control.value } };
   };
