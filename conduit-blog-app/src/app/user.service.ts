@@ -41,4 +41,15 @@ export class UserService {
     };
     return this._http.get<any>(this._getArticles, httpOptions);
   }
+
+  getArticle(slug: string, token: string) {
+    let autherizationHeader = this._token + token;
+    let request = this._getArticles + '/' + slug;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.get<any>(request, httpOptions);
+  }
 }

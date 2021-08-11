@@ -1,0 +1,13 @@
+.container {
+  background-color: lightblue;
+}
+.profileImage {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+a:hover {
+  text-decoration: none;
+}

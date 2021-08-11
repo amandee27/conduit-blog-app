@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'profile', component: UserComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'author-profile', component: AuthorProfileComponent },
-  { path: 'article', component: ArticleComponent },
+  { path: 'author-profile/:author', component: AuthorProfileComponent },
+  { path: 'articles/:slug', component: ArticleComponent },
   { path: '**', redirectTo: '' },
 ];
 

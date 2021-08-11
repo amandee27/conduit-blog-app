@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { UserDetailService } from '../user-detail.service';
 import { UserService } from '../user.service';
 import { Article } from '../model/article';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private userDetailService: UserDetailService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  viewArticle(slug: string) {
+    this.router.navigate(['./articles', slug]);
+  }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

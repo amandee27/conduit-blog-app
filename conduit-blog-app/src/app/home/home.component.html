@@ -47,7 +47,7 @@
       <h5 class="card-title"> {{article.title}}</h5>
       <!-- <img class="card-img-left articleImage" [src]="image" alt="Card image cap"> -->
       <p class="card-text">{{article.body}}</p>
-      <a routerLink="./article" class="btn btn-primary">Read</a>
+      <button (click)="viewArticle(article.slug)">Read</button>
     </div>
   </div>
 </div>
