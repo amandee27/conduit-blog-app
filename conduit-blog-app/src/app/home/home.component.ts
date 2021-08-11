@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
   isSignedIn: boolean = false;
   articles?: Article[];
+  tagList?: string[];
 
   constructor(
     private userDetailService: UserDetailService,
