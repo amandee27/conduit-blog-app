@@ -13,6 +13,7 @@ export class UserService {
   _token: string = 'Token ';
   _signUpUrl: string = 'http://localhost:3000/api/users';
   _getArticles: string = 'http://localhost:3000/api/articles';
+  _getAuthor: string = 'http://localhost:3000/api/profiles/';
   constructor(private _http: HttpClient) {}
   login(user: User) {
     return this._http.post<UserDetail>(this._url, { user: user });
@@ -51,5 +52,16 @@ export class UserService {
       }),
     };
     return this._http.get<any>(request, httpOptions);
+  }
+
+  getAuthor(author: string, token: string) {
+    let autherizationHeader = this._token + token;
+    let url = this._getAuthor + author + '/';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.get<any>(url, httpOptions);
   }
 }

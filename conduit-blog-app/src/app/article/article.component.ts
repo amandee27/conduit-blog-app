@@ -47,7 +47,6 @@ export class ArticleComponent implements OnInit {
   }
 
   viewAuthor(author?: string) {
-    console.log('This is navigation to author profile', author);
     this.route.navigate(['/author-profile', author]);
   }
 }

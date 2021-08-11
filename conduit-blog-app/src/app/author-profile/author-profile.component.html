@@ -1,1 +1,62 @@
-<p>author-profile works!</p>
+<div>
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+        <div class="col-xl-6 col-md-12">
+          <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                  <div class="m-b-25">
+                    <img [src]="author?.image" alt="" class="profilePic  mx-auto d-block" *ngIf="author?.image!==undefined; else defaultAuthor"/>
+                    <ng-template #defaultAuthor>
+                      <img src="../../assets/default_user.png" alt="" class="profilePic  mx-auto d-block">
+                    </ng-template>
+                    <h6 class="f-w-600 ">{{ author?.username|titlecase }}</h6>
+                    <p>Web Designer</p> 
+                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card-block">
+                  <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                  <div class="row">
+                    
+                    <div class="col-sm-12">
+                      <p class="m-b-10 f-w-600">Biography</p>
+                      <h6 class="text-muted f-w-400"> {{  author?.bio }}</h6>
+                    </div>
+                  </div>
+                  <div class="row mx-2 my-3">
+                      <button class="btn-success buttonFormat" *ngIf="!author?.following">Follow</button>
+                      <button class="btn-success buttonFormat" *ngIf="author?.following">Following</button>
+                  </div>
+                  <div class="col text-right ">
+                    <span class="mr-2">
+                      <fa-icon
+                        [icon]="faLinkedinIn"
+                        [styles]="{ color: 'grey' }"
+                        size="lg"
+                      ></fa-icon>
+                    </span>
+              
+                    <span class="mr-2">
+                      <fa-icon
+                        [icon]="faGithub"
+                        [styles]="{ color: 'grey' }"
+                        size="lg"
+                      ></fa-icon>
+                    </span>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
+  
