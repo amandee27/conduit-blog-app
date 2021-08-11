@@ -43,6 +43,7 @@
               type="email"
               class="form-control"
               id="exampleInputEmail1"
+              pattern="[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\\.]+"
               aria-describedby="emailHelp"
               placeholder="Enter email"
               formControlName="email"
@@ -51,6 +52,9 @@
             <div *ngIf= "profileFormControl.email.touched" class="invalid-feedback">
               <div *ngIf="profileFormControl.email.errors?.required">
                 <small>Email is required</small>
+              </div>
+              <div *ngIf="profileFormControl.email.errors?.pattern">
+                <small>Email is invalid</small>
               </div>
             </div>
             <div [hidden]="profileFormControl.email.touched">
