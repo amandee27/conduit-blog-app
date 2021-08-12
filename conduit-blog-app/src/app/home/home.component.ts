@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['./articles', slug]);
   }
 
+  viewAuthor(author: string) {
+    this.router.navigate(['/author-profile', author]);
+  }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

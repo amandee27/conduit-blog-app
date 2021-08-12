@@ -31,19 +31,22 @@
     </div>
     <div class="card-body">
       <div class=" my-2">
-        <ng-template #tipContent style="background-color: wheat;">
-        <div>
-          <a routerLink="./author-profile"  class="tooltipFormat">
-            <b>{{article.author.username|date:'short'}}</b>
-          </a>
-          
-        </div></ng-template>
-        <a routerLink="./author-profile">
-          <img class=" articleImage" [src]="article.author.image" alt="">
+        <ng-template #tipContent >
+          <div>
+            <img class="articleImage" [src]="article.author.image" alt="">
+            <a class="text-muted" (click)="viewAuthor(article.author.username)"  class="tooltipFormat">
+              <b class="mx-1">{{article.author.username|titlecase}}</b>
+            </a>
+          </div>
+          <div>
+            <span><small>{{article.author.bio}}</small></span>
+          </div>
+        </ng-template>
+        <a (click)="viewAuthor(article.author.username)">
           <span class="username" [ngbTooltip]="tipContent"><small>{{article.author.username}}</small></span>
           <span class="mx-1 text-muted">.</span>
           <span class="text-muted mr-1"><small>Created at</small></span>
-          <span class="text-muted"><small>{{article.createdAt}}</small></span>
+          <span class="text-muted"><small>{{article.createdAt|date:'short'}}</small></span>
         </a>
       </div>
       <h5 class="card-title"> {{article.title}}</h5>
