@@ -6,6 +6,7 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthorProfileComponent } from './author-profile/author-profile.component';
 import { ArticleComponent } from './article/article.component';
+import { NewArticleComponent } from './new-article/new-article.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'author-profile/:author', component: AuthorProfileComponent },
   { path: 'articles/:slug', component: ArticleComponent },
+  { path: 'profile/new-article', component: NewArticleComponent },
   { path: '**', redirectTo: '' },
 ];
 

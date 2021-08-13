@@ -1,0 +1,37 @@
+<div class="container pt-4">
+    <div class="text-center py-2">
+        <h3>Create Article</h3>
+    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+              </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="description" placeholder="Description" formControlName="description">
+              </div>
+        </div>
+        <div class="form-group row">
+            <label for="body" class="col-sm-2 col-form-label">Body</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="body" placeholder="Body" formControlName="body">
+              </div>
+        </div>
+        <div class="form-group row">
+            <label for="tagList" class="col-sm-2 col-form-label">Tag List</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="tagList" placeholder="Tag List Here" formControlName="tagList">
+              </div>
+        </div>
+        <div class="form-group row float-right">
+            <div class="col-sm-10  ">
+              <button type="submit" class="btn btn-primary" style="width: 200px;" [disabled]="!profileForm.valid">Create Article</button>
+            </div>
+          </div>
+    </form>
+</div>
+

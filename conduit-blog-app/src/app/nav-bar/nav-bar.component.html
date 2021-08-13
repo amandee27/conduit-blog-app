@@ -43,10 +43,12 @@
             <li ngbDropdownItem class="dropdown-item ">
               <a class="item" routerLink="/profile" routerLinkActive="active" (click)="isMenuCollapsed = true" >Profile</a>
             </li>
+            <li ngbDropdownItem class="dropdown-item ">
+              <a class="item" routerLink="/profile/new-article" routerLinkActive="active" (click)="isMenuCollapsed = true" >Create Article</a>
+            </li>
             <li ngbDropdownItem class="dropdown-item">
               <a    class="item" routerLink="/sign-in" routerLinkActive="active"  (click)="logout($event)">Logout</a>
             </li>
-
           </div>
         </li>
       </ul>

@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ValidationDirective } from './validation.directive';
 import { AuthorProfileComponent } from './author-profile/author-profile.component';
 import { ArticleComponent } from './article/article.component';
+import { NewArticleComponent } from './new-article/new-article.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ArticleComponent } from './article/article.component';
     ValidationDirective,
     AuthorProfileComponent,
     ArticleComponent,
+    NewArticleComponent,
   ],
   imports: [
     BrowserModule,

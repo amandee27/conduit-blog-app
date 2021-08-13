@@ -14,6 +14,7 @@ export class UserService {
   _signUpUrl: string = 'http://localhost:3000/api/users';
   _getArticles: string = 'http://localhost:3000/api/articles';
   _getAuthor: string = 'http://localhost:3000/api/profiles/';
+  _createArticles: string = 'http://localhost:3000/api/articles';
   constructor(private _http: HttpClient) {}
   login(user: User) {
     return this._http.post<UserDetail>(this._url, { user: user });
@@ -63,5 +64,17 @@ export class UserService {
       }),
     };
     return this._http.get<any>(url, httpOptions);
+  }
+
+  createArticle(createdArticle: string, token: string) {
+    let newArticle = { article: JSON.parse(createdArticle) };
+    //console.log('this is service :', newArticle);
+    let autherizationHeader = this._token + token;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.post<any>(this._createArticles, newArticle, httpOptions);
   }
 }
