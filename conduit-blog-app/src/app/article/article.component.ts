@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { UserService } from '../user.service';
 import { Article } from '../model/article';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-article',
@@ -13,7 +13,7 @@ export class ArticleComponent implements OnInit {
   updatedTime: number = 0;
   constructor(
     private activateRouter: ActivatedRoute,
-    private userService: UserService,
+    private articleService: ArticleService,
     private route: Router
   ) {}
 
@@ -22,7 +22,7 @@ export class ArticleComponent implements OnInit {
       let slug = params.get('slug');
       console.log(params.get('slug'));
       if (slug !== null) {
-        this.userService.getArticle(slug).subscribe((data) => {
+        this.articleService.getArticle(slug).subscribe((data) => {
           console.log('This is article data***   :', data);
           this.article = data.article;
           console.log(this.article);

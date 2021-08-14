@@ -1,11 +1,13 @@
 export interface UserDetail {
   user: UserInfo;
 }
-
-export interface UserInfo {
+export interface PersonInfo {
   username: string;
-  email: string;
-  token: string;
   bio?: string;
   image?: string;
+}
+
+export interface UserInfo extends PersonInfo {
+  email: string;
+  token: string;
 }

@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './model/user';
 import { UserDetail } from './model/userDetail';
 import { NewUser } from './model/newUser';
-import { NewArticle } from './model/newArticle';
-import { Articles, ArticleObj, Author } from './model/article';
+import { ProfileObj } from './model/article';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +13,9 @@ export class UserService {
   _urlNew: string = 'http://localhost:3000/api/user';
 
   _signUpUrl: string = 'http://localhost:3000/api/users';
-  _getArticles: string = 'http://localhost:3000/api/articles';
-  _getAuthor: string = 'http://localhost:3000/api/profiles/';
-  _createArticles: string = 'http://localhost:3000/api/articles';
+
+  _getProfile: string = 'http://localhost:3000/api/profiles/';
+
   token: string = '';
   constructor(private _http: HttpClient) {}
   login(user: User) {
@@ -37,52 +36,15 @@ export class UserService {
     return this._http.post<UserDetail>(this._signUpUrl, { user: newUser });
   }
 
-  getArticles() {
+  getProfile(profile: string) {
     let autherizationHeader = this.getAuthHeader();
+    let url = this._getProfile + profile + '/';
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: autherizationHeader,
       }),
     };
-    return this._http.get<Articles>(this._getArticles, httpOptions);
-  }
-
-  getArticle(slug: string) {
-    let autherizationHeader = this.getAuthHeader();
-    let request = this._getArticles + '/' + slug;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: autherizationHeader,
-      }),
-    };
-    return this._http.get<ArticleObj>(request, httpOptions);
-  }
-
-  getAuthor(author: string) {
-    let autherizationHeader = this.getAuthHeader();
-    let url = this._getAuthor + author + '/';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: autherizationHeader,
-      }),
-    };
-    return this._http.get<Author>(url, httpOptions);
-  }
-
-  createArticle(createdArticle: NewArticle) {
-    let newArticle = { article: createdArticle };
-    //console.log('this is service :', newArticle);
-    let autherizationHeader = this.getAuthHeader();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: autherizationHeader,
-      }),
-    };
-    return this._http.post<ArticleObj>(
-      this._createArticles,
-      newArticle,
-      httpOptions
-    );
+    return this._http.get<ProfileObj>(url, httpOptions);
   }
 
   getAuthHeader(): string {

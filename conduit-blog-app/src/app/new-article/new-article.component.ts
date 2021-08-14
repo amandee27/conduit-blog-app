@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { ArticleService } from '../article.service';
 import { NewArticle } from '../model/newArticle';
 import {
   FormBuilder,
@@ -23,7 +23,7 @@ export class NewArticleComponent implements OnInit {
   formData = this.profileForm.value;
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private articleService: ArticleService
   ) {}
 
   ngOnInit(): void {}
@@ -38,7 +38,7 @@ export class NewArticleComponent implements OnInit {
         tagList: tagList,
       },
     };
-    this.userService.createArticle(art.article).subscribe((data) => {
+    this.articleService.createArticle(art.article).subscribe((data) => {
       console.log('This is response data', data);
       this.profileForm.reset();
     });

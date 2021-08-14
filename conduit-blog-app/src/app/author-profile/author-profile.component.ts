@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Owner } from '../model/article';
+import { Profile } from '../model/article';
 import { UserService } from '../user.service';
 import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 
@@ -10,7 +10,7 @@ import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./author-profile.component.scss'],
 })
 export class AuthorProfileComponent implements OnInit {
-  author?: Owner;
+  author?: Profile;
   faGithub = faGithub;
   faLinkedinIn = faLinkedinIn;
   constructor(
@@ -22,7 +22,7 @@ export class AuthorProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       let authorId = params.get('author');
       if (authorId !== null) {
-        this.userService.getAuthor(authorId).subscribe((data) => {
+        this.userService.getProfile(authorId).subscribe((data) => {
           this.author = data.profile;
           console.log(data);
           console.log(this.author?.image);

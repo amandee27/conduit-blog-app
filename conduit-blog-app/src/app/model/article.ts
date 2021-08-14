@@ -1,3 +1,5 @@
+import { PersonInfo } from './userDetail';
+
 export interface Articles {
   articles: Article[];
 }
@@ -7,7 +9,7 @@ export interface ArticleObj {
 }
 
 export interface Article {
-  author: Owner;
+  author: Profile;
   body: string;
   createdAt: string;
   description: string;
@@ -19,12 +21,9 @@ export interface Article {
   updatedAt: string;
 }
 
-export interface Author {
-  profile: Owner;
+export interface ProfileObj {
+  profile: Profile;
 }
-export interface Owner {
-  bio: string;
+export interface Profile extends PersonInfo {
   following: boolean;
-  image: string;
-  username: string;
 }
