@@ -19,13 +19,13 @@ export class AuthorProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let token = localStorage.token;
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       let authorId = params.get('author');
       if (authorId !== null) {
-        this.userService.getAuthor(authorId, token).subscribe((data) => {
+        this.userService.getAuthor(authorId).subscribe((data) => {
           this.author = data.profile;
           console.log(data);
+          console.log(this.author?.image);
         });
       }
     });

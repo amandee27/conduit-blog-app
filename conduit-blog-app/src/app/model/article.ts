@@ -1,3 +1,11 @@
+export interface Articles {
+  articles: Article[];
+}
+
+export interface ArticleObj {
+  article: Article;
+}
+
 export interface Article {
   author: Owner;
   body: string;
@@ -11,6 +19,9 @@ export interface Article {
   updatedAt: string;
 }
 
+export interface Author {
+  profile: Owner;
+}
 export interface Owner {
   bio: string;
   following: boolean;

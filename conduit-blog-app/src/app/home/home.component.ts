@@ -23,18 +23,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    let token = localStorage.token;
     this.subscription = this.userDetailService.isSignedIn$.subscribe((data) => {
       this.isSignedIn = data;
     });
-    if (token !== undefined) {
-      this.userService.getArticles(token).subscribe((data) => {
-        console.log(data);
-        this.articles = data.articles;
-        console.log(this.articles?.length);
-        console.log(this.articles?.[0].body);
-      });
-    }
+    this.userService.getArticles().subscribe((data) => {
+      console.log(data);
+      this.articles = data.articles;
+      console.log(this.articles?.length);
+      console.log(this.articles?.[0].body);
+    });
   }
 
   viewArticle(slug: string) {

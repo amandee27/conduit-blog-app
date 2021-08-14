@@ -18,12 +18,11 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let token = localStorage.token;
     this.activateRouter.paramMap.subscribe((params: ParamMap) => {
       let slug = params.get('slug');
       console.log(params.get('slug'));
       if (slug !== null) {
-        this.userService.getArticle(slug, token).subscribe((data) => {
+        this.userService.getArticle(slug).subscribe((data) => {
           console.log('This is article data***   :', data);
           this.article = data.article;
           console.log(this.article);

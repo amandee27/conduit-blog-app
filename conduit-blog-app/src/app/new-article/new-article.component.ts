@@ -14,7 +14,6 @@ import {
   styleUrls: ['./new-article.component.scss'],
 })
 export class NewArticleComponent implements OnInit {
-  newArticle?: NewArticle;
   profileForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -30,8 +29,8 @@ export class NewArticleComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    var tagList: string[] = this.profileForm.value.tagList.split(',', -1);
-    var art = {
+    let tagList: string[] = this.profileForm.value.tagList.split(',', -1);
+    let art = {
       article: {
         title: this.profileForm.value.title,
         description: this.profileForm.value.description,
@@ -39,18 +38,10 @@ export class NewArticleComponent implements OnInit {
         tagList: tagList,
       },
     };
-    if (art.article !== undefined) {
-      this.newArticle = art.article;
-    }
-
-    let token = localStorage.token;
-
-    this.userService
-      .createArticle(JSON.stringify(this.newArticle), token)
-      .subscribe((data) => {
-        console.log('This is response data', data);
-        this.profileForm.reset();
-      });
-    console.log(this.newArticle);
+    this.userService.createArticle(art.article).subscribe((data) => {
+      console.log('This is response data', data);
+      this.profileForm.reset();
+    });
+    console.log(art);
   }
 }

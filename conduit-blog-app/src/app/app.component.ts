@@ -18,16 +18,14 @@ export class AppComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
-    let token = localStorage.token;
-    if (token !== undefined) {
-      this.userService.getCurrentUser(token).subscribe((data) => {
-        if (data.user) {
-          this.signedIn = true;
-          this.userDetailService.isSignedInUser(this.signedIn);
-          this.userDetailService.userLoginDetail(data);
-        }
-      });
-    }
+    this.userService.getCurrentUser().subscribe((data) => {
+      if (data.user) {
+        console.log(data);
+        this.signedIn = true;
+        this.userDetailService.isSignedInUser(this.signedIn);
+        this.userDetailService.userLoginDetail(data);
+      }
+    });
   }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
