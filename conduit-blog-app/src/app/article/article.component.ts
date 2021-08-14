@@ -10,7 +10,6 @@ import { ArticleService } from '../article.service';
 })
 export class ArticleComponent implements OnInit {
   article?: Article;
-  updatedTime: number = 0;
   constructor(
     private activateRouter: ActivatedRoute,
     private articleService: ArticleService,
@@ -20,29 +19,12 @@ export class ArticleComponent implements OnInit {
   ngOnInit(): void {
     this.activateRouter.paramMap.subscribe((params: ParamMap) => {
       let slug = params.get('slug');
-      console.log(params.get('slug'));
       if (slug !== null) {
         this.articleService.getArticle(slug).subscribe((data) => {
-          console.log('This is article data***   :', data);
           this.article = data.article;
-          console.log(this.article);
-          console.log(this.article?.title);
         });
       }
     });
-    var time = new Date();
-
-    console.log(
-      time.toLocaleString('en-LK', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        hour12: true,
-        minute: '2-digit',
-        second: '2-digit',
-      })
-    );
   }
 
   viewAuthor(author?: string) {

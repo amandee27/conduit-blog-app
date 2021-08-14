@@ -21,12 +21,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  // profileForm = new FormGroup({
-  //   username: new FormControl(''),
-  //   email: new FormControl(''),
-  //   password: new FormControl(''),
-  // });
-
   newUser: NewUser = { username: '', email: '', password: '' };
   isSubmit: boolean = false;
 
@@ -44,13 +38,12 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {}
   onSubmit() {
-    console.log(this.profileForm.value);
     this.newUser.username = this.profileForm.value.username;
     this.newUser.email = this.profileForm.value.email;
     this.newUser.password = this.profileForm.value.password;
+
     this.userService.signUp(this.newUser).subscribe(
       (data) => {
-        console.log(data);
         this.UserDetailService.userLoginDetail(data);
         this.UserDetailService.isSignedInUser(true);
         this.profileForm.reset();

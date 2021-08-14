@@ -11,12 +11,10 @@ import { ProfileObj } from './model/article';
 export class UserService {
   _url: string = 'http://localhost:3000/api/users/login';
   _urlNew: string = 'http://localhost:3000/api/user';
-
   _signUpUrl: string = 'http://localhost:3000/api/users';
-
   _getProfile: string = 'http://localhost:3000/api/profiles/';
-
   token: string = '';
+
   constructor(private _http: HttpClient) {}
   login(user: User) {
     return this._http.post<UserDetail>(this._url, { user: user });

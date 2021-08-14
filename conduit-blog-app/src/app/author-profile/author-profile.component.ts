@@ -24,8 +24,6 @@ export class AuthorProfileComponent implements OnInit {
       if (authorId !== null) {
         this.userService.getProfile(authorId).subscribe((data) => {
           this.author = data.profile;
-          console.log(data);
-          console.log(this.author?.image);
         });
       }
     });

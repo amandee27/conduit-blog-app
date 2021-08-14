@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
   isSignedIn: boolean = false;
   articles?: Article[];
-  tagList?: string[];
 
   constructor(
     private userDetailService: UserDetailService,
@@ -27,10 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isSignedIn = data;
     });
     this.articleService.getArticles().subscribe((data) => {
-      console.log(data);
       this.articles = data.articles;
-      console.log(this.articles?.length);
-      console.log(this.articles?.[0].body);
     });
   }
 

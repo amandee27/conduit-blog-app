@@ -1,16 +1,16 @@
 
-<div class="pt-4">
-    <h2 class="text-center">{{article?.title|titlecase}}</h2>
-    <h6 class="my-3 text-muted text-center">{{article?.description}}</h6>
+<div class="pt-4" *ngIf="article!==undefined">
+    <h2 class="text-center">{{article.title|titlecase}}</h2>
+    <h6 class="my-3 text-muted text-center">{{article.description}}</h6>
     <div class="mb-3">
-        <a (click)="viewAuthor(article?.author?.username)">
-            <img [src]="article?.author?.image" alt="" class="profileImage my-2">
-            <span class="mx-2"><small class="text-muted">{{article?.author?.username|titlecase}}</small></span>
+        <a (click)="viewAuthor(article.author.username)">
+            <img [src]="article.author.image" alt="" class="profileImage my-2">
+            <span class="mx-2"><small class="text-muted">{{article.author.username|titlecase}}</small></span>
             <span>.</span>
-            <span class="mx-2"> <small class="text-muted">{{article?.updatedAt|date:'short'}}</small></span>
+            <span class="mx-2"> <small class="text-muted">{{article.updatedAt|date:'short'}}</small></span>
         </a>  
     </div>
     <div class="container py-3 px-3">
-        <p>{{article?.body}}</p>
+        <p>{{article.body}}</p>
     </div>
 </div>

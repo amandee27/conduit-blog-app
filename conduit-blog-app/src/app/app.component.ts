@@ -9,7 +9,6 @@ import { UserService } from './user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'conduit-blog-app';
   subscription?: Subscription;
   signedIn: boolean = false;
 
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((data) => {
       if (data.user) {
-        console.log(data);
         this.signedIn = true;
         this.userDetailService.isSignedInUser(this.signedIn);
         this.userDetailService.userLoginDetail(data);

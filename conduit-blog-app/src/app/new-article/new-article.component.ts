@@ -20,11 +20,7 @@ export class NewArticleComponent implements OnInit {
     body: new FormControl('', [Validators.required]),
     tagList: new FormControl(['']),
   });
-  formData = this.profileForm.value;
-  constructor(
-    private formBuilder: FormBuilder,
-    private articleService: ArticleService
-  ) {}
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {}
 
@@ -39,9 +35,7 @@ export class NewArticleComponent implements OnInit {
       },
     };
     this.articleService.createArticle(art.article).subscribe((data) => {
-      console.log('This is response data', data);
       this.profileForm.reset();
     });
-    console.log(art);
   }
 }

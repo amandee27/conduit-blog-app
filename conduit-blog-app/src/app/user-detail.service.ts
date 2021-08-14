@@ -8,10 +8,7 @@ import { NewUser } from './model/newUser';
 })
 export class UserDetailService {
   datalogin?: UserDetail;
-  signUpDetail?: NewUser;
-  id: number = 0;
   signedIn: boolean = false;
-  signedInData: any;
   constructor() {}
 
   private userDetailSource = new BehaviorSubject<UserDetail | null>(null);

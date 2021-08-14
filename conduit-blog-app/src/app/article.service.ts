@@ -13,7 +13,6 @@ export class ArticleService {
 
   createArticle(createdArticle: NewArticle) {
     let newArticle = { article: createdArticle };
-    //console.log('this is service :', newArticle);
     let autherizationHeader = this.getAuthHeader();
     const httpOptions = {
       headers: new HttpHeaders({
