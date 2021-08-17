@@ -17,13 +17,15 @@ export class AppComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((data) => {
-      if (data.user) {
-        this.signedIn = true;
-        this.userDetailService.isSignedInUser(this.signedIn);
-        this.userDetailService.userLoginDetail(data);
-      }
-    });
+    if (localStorage.token !== undefined) {
+      this.userService.getCurrentUser().subscribe((data) => {
+        if (data.user) {
+          this.signedIn = true;
+          this.userDetailService.isSignedInUser(this.signedIn);
+          this.userDetailService.userLoginDetail(data);
+        }
+      });
+    }
   }
   ngOnDestroy() {
     this.subscription?.unsubscribe();

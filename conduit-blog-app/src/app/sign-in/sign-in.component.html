@@ -56,15 +56,19 @@
           </div>
           <div hidden>{{userpassword.errors|json}}</div>
         </div>
+        <div>
+          <ngb-alert type="danger" (closed)="close()" *ngIf="errorKey!=='' && errorVal!==''">{{errorKey}}   {{errorVal}}</ngb-alert>
+        </div>
+      
         <button
           class="btn btn-lg btn-primary btn-block"
           type="submit"
           [disabled]="!signUpForm.form.valid"
           (click)="Issubmit(true)"
         >
-          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit"></span>
-          <span  *ngIf="!isSubmit">Sign In</span> 
-          <span  *ngIf="isSubmit">loading ....</span>
+          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit && !isError"></span>
+          <span  *ngIf="!isSubmit || isError">Sign In</span> 
+          <span  *ngIf="isSubmit && !isError">loading ....</span>
         </button>
       </form>
     </div>

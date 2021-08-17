@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
@@ -39,9 +39,9 @@ import { NewArticleComponent } from './new-article/new-article.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    NgbModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgbAlertModule,
   ],
   providers: [UserDetailService],
   bootstrap: [AppComponent],
