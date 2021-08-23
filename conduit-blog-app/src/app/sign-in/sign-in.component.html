@@ -56,8 +56,8 @@
           </div>
           <div hidden>{{userpassword.errors|json}}</div>
         </div>
-        <div>
-          <ngb-alert type="danger" (closed)="close()" *ngIf="errorKey!=='' && errorVal!==''">{{errorKey}}   {{errorVal}}</ngb-alert>
+        <div *ngFor="let error of errors; let i=index;">
+          <ngb-alert type="danger" (closed)="close(i)" >{{error}}</ngb-alert>
         </div>
       
         <button

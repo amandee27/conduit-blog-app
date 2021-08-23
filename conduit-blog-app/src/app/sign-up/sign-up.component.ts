@@ -23,11 +23,13 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnInit {
   newUser: NewUser = { username: '', email: '', password: '' };
   isSubmit: boolean = false;
+  errors: string[] = [];
+  isError: boolean = false;
 
   profileForm = this.formBuilder.group({
     username: ['', [Validators.required, userNameValidator(/^[A-Za-z0-9_]+$/)]],
     email: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(7)]],
   });
   constructor(
     private formBuilder: FormBuilder,
@@ -49,9 +51,16 @@ export class SignUpComponent implements OnInit {
         this.profileForm.reset();
         this.route.navigate(['/profile']);
         this.isSubmit = false;
+        this.isError = false;
       },
       (error) => {
-        console.log(error);
+        this.isError = true;
+        console.log(error.error.errors);
+        Object.keys(error.error.errors).map((value) => {
+          let strError = value + ' ' + error.error.errors[value];
+          console.log(value + ' ' + error.error.errors[value]);
+          this.errors.push(strError);
+        });
       }
     );
   }
@@ -61,5 +70,11 @@ export class SignUpComponent implements OnInit {
   }
   Issubmit(isSubmit: boolean) {
     this.isSubmit = isSubmit;
+    this.errors.splice(0, this.errors.length);
+    this.isError = false;
+  }
+
+  closeAlert(index: number) {
+    this.errors.splice(index, 1);
   }
 }

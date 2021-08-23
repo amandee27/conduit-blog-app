@@ -80,15 +80,18 @@
                   <small>Password is required</small>
                 </div>
                 <div *ngIf="profileFormControl.password.errors?.minlength">
-                  <small>Password should have at least 8 characters</small>
+                  <small>Password should have at least 7 characters</small>
                 </div>
                 
               </div>
           </div>
+          <div *ngFor="let error of errors;let i=index;">
+            <ngb-alert type="danger" (closed)="closeAlert(i)">{{error}}</ngb-alert>
+          </div>
           <button type="submit" class="btn btn-primary btn-block" [disabled]="!profileForm.valid" (click)="Issubmit(true)">
-            <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit"></span>
-            <span  *ngIf="!isSubmit">Sign Up</span>
-            <span  *ngIf="isSubmit">loading ....</span>
+            <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit && !isError"></span>
+            <span  *ngIf="!isSubmit || isError">Sign Up</span>
+            <span  *ngIf="isSubmit && !isError">loading ....</span>
           </button>
         </form>
       </div>

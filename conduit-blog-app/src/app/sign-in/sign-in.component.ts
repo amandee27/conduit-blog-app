@@ -20,9 +20,9 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 export class SignInComponent implements OnInit {
   user: User = { email: '', password: '' };
   isSubmit: boolean = false;
-  errorKey: string = '';
   errorVal: string = '';
   isError: boolean = false;
+  errors: string[] = [];
 
   constructor(
     private userService: UserService,
@@ -45,22 +45,9 @@ export class SignInComponent implements OnInit {
       (error) => {
         this.isError = true;
         console.log('Failed', error.error.errors);
-        // Object.keys(error.error.errors).forEach((value) => {
-        //   this.errorKey = value;
-        //   console.log(this.errorKey);
-        // });
-        // Object.values(error.error.errors).forEach((value) => {
-        //   if (value !== undefined) {
-        //     this.errorVal = String(value);
-        //   }
-        //   console.log(this.errorVal);
-        // });
 
         Object.keys(error.error.errors).map((value) => {
-          this.errorKey = value;
-        });
-        Object.values(error.error.errors).map((value) => {
-          this.errorVal = String(value);
+          this.errors.push(value + ' ' + error.error.errors[value]);
         });
       }
     );
@@ -68,10 +55,11 @@ export class SignInComponent implements OnInit {
 
   Issubmit(isSubmit: boolean) {
     this.isSubmit = isSubmit;
+    this.errors.splice(0, this.errors.length);
+    this.isError = false;
   }
 
-  close() {
-    this.errorKey = '';
-    this.errorVal = '';
+  close(index: number) {
+    this.errors.splice(index, 1);
   }
 }
