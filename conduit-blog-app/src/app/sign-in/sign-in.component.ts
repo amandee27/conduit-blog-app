@@ -44,8 +44,6 @@ export class SignInComponent implements OnInit {
       },
       (error) => {
         this.isError = true;
-        console.log('Failed', error.error.errors);
-
         Object.keys(error.error.errors).map((value) => {
           this.errors.push(value + ' ' + error.error.errors[value]);
         });

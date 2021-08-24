@@ -55,10 +55,8 @@ export class SignUpComponent implements OnInit {
       },
       (error) => {
         this.isError = true;
-        console.log(error.error.errors);
         Object.keys(error.error.errors).map((value) => {
           let strError = value + ' ' + error.error.errors[value];
-          console.log(value + ' ' + error.error.errors[value]);
           this.errors.push(strError);
         });
       }
