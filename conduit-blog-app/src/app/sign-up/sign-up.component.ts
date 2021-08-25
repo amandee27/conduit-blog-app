@@ -22,9 +22,8 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
   newUser: NewUser = { username: '', email: '', password: '' };
-  isSubmit: boolean = false;
+  isSubmitting: boolean = false;
   errors: string[] = [];
-  isError: boolean = false;
 
   profileForm = this.formBuilder.group({
     username: ['', [Validators.required, userNameValidator(/^[A-Za-z0-9_]+$/)]],
@@ -40,6 +39,8 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {}
   onSubmit() {
+    this.isSubmitting = true;
+    this.errors.splice(0, this.errors.length);
     this.newUser.username = this.profileForm.value.username;
     this.newUser.email = this.profileForm.value.email;
     this.newUser.password = this.profileForm.value.password;
@@ -50,14 +51,13 @@ export class SignUpComponent implements OnInit {
         this.UserDetailService.isSignedInUser(true);
         this.profileForm.reset();
         this.route.navigate(['/profile']);
-        this.isSubmit = false;
-        this.isError = false;
+        this.isSubmitting = false;
       },
       (error) => {
-        this.isError = true;
         Object.keys(error.error.errors).map((value) => {
           let strError = value + ' ' + error.error.errors[value];
           this.errors.push(strError);
+          this.isSubmitting = false;
         });
       }
     );
@@ -66,12 +66,6 @@ export class SignUpComponent implements OnInit {
   get profileFormControl() {
     return this.profileForm.controls;
   }
-  Issubmit(isSubmit: boolean) {
-    this.isSubmit = isSubmit;
-    this.errors.splice(0, this.errors.length);
-    this.isError = false;
-  }
-
   closeAlert(index: number) {
     this.errors.splice(index, 1);
   }

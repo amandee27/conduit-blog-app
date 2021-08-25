@@ -1,19 +1,19 @@
-<div class="container ">
+<div class="container">
   <div class="row">
     <div class="col">
-      <form class="form-signin" (ngSubmit)="submitForm(signUpForm)" #signUpForm="ngForm">
+      <form
+        class="form-signin"
+        (ngSubmit)="submitForm(signUpForm)"
+        #signUpForm="ngForm"
+      >
         <div class="image-center">
-          <img
-            class="image "
-            src="../../assets/conduit_logo.png"
-            alt="logo"
-          />
+          <img class="image" src="../../assets/conduit_logo.png" alt="logo" />
         </div>
-        
-          <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
+
+        <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
         <div class="form-group">
           <label for="exampleInputEmail1" class="sr-only">Email address</label>
-          
+
           <input
             type="email"
             class="form-control"
@@ -24,16 +24,16 @@
             required
             #email="ngModel"
           />
-         
-          <div [hidden]="email.valid||email.untouched"  class="invalid-feedback">
-            
-            <small >Email is required</small>
-            
+
+          <div
+            [hidden]="email.valid || email.untouched"
+            class="invalid-feedback"
+          >
+            <small>Email is required</small>
           </div>
           <small id="emailHelp" class="form-text text-muted"
             >We'll never share your email with anyone else.</small
           >
-          
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1" class="sr-only">Password</label>
@@ -48,27 +48,37 @@
             required
             #userpassword="ngModel"
           />
-          <div [hidden]="userpassword.untouched || userpassword.errors===null"  class="invalid-feedback">
-           
-              <small *ngIf="userpassword.errors?.required">password is required</small>
-              <small *ngIf="userpassword.errors?.pattern">password must be longer than 7 characters</small>
-  
+          <div
+            [hidden]="userpassword.untouched || userpassword.errors === null"
+            class="invalid-feedback"
+          >
+            <small *ngIf="userpassword.errors?.required"
+              >password is required</small
+            >
+            <small *ngIf="userpassword.errors?.pattern"
+              >password must be longer than 7 characters</small
+            >
           </div>
-          <div hidden>{{userpassword.errors|json}}</div>
+          <div hidden>{{ userpassword.errors | json }}</div>
         </div>
-        <div *ngFor="let error of errors; let i=index;">
-          <ngb-alert type="danger" (closed)="close(i)" >{{error}}</ngb-alert>
+        <div *ngFor="let error of errors; let i = index">
+          <ngb-alert type="danger" (closed)="close(i)">{{ error }}</ngb-alert>
         </div>
-      
+
         <button
           class="btn btn-lg btn-primary btn-block"
           type="submit"
-          [disabled]="!signUpForm.form.valid || errors.length>0 "
-          (click)="Issubmit(true)"
+          [disabled]="!signUpForm.form.valid || isSubmitting"
         >
-          <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit && !isError"></span>
-          <span  *ngIf="!isSubmit || isError" >Sign In</span> 
-          <span  *ngIf="isSubmit && !isError" >loading ....</span>
+          <span *ngIf="!isSubmitting">Sign In</span>
+          <span *ngIf="isSubmitting">
+            <span
+              class="spinner-grow spinner-grow-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span>loading ....</span>
+          </span>
         </button>
       </form>
     </div>

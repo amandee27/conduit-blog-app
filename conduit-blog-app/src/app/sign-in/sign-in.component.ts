@@ -19,9 +19,7 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SignInComponent implements OnInit {
   user: User = { email: '', password: '' };
-  isSubmit: boolean = false;
-  errorVal: string = '';
-  isError: boolean = false;
+  isSubmitting: boolean = false;
   errors: string[] = [];
 
   constructor(
@@ -33,28 +31,23 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm(signInForm: NgForm) {
+    this.isSubmitting = true;
+    this.errors.splice(0, this.errors.length);
     this.userService.login(this.user).subscribe(
       (data) => {
         this.userDetailService.userLoginDetail(data);
         this.userDetailService.isSignedInUser(true);
         signInForm.resetForm();
         this.route.navigate(['/profile']);
-        this.isSubmit = false;
-        this.isError = false;
+        this.isSubmitting = false;
       },
       (error) => {
-        this.isError = true;
         Object.keys(error.error.errors).map((value) => {
           this.errors.push(value + ' ' + error.error.errors[value]);
         });
+        this.isSubmitting = false;
       }
     );
-  }
-
-  Issubmit(isSubmit: boolean) {
-    this.isSubmit = isSubmit;
-    this.errors.splice(0, this.errors.length);
-    this.isError = false;
   }
 
   close(index: number) {

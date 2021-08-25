@@ -88,10 +88,14 @@
           <div *ngFor="let error of errors;let i=index;">
             <ngb-alert type="danger" (closed)="closeAlert(i)">{{error}}</ngb-alert>
           </div>
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="!profileForm.valid || errors.length>0" (click)="Issubmit(true)">
-            <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"  *ngIf="isSubmit && !isError"></span>
-            <span  *ngIf="!isSubmit || isError" >Sign Up</span>
-            <span  *ngIf="isSubmit && !isError" disable>loading ....</span>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!profileForm.valid || isSubmitting" >
+            
+            <span  *ngIf="!isSubmitting" >Sign Up</span>
+            <span *ngIf="isSubmitting">
+              <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"></span>
+              <span >loading ....</span>
+            </span>
+            
           </button>
         </form>
       </div>
