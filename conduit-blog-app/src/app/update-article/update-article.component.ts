@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ArticleService } from '../article.service';
 import { Article } from '../model/article';
+import { NewArticleObj } from '../model/newArticle';
 
 @Component({
   selector: 'app-update-article',
@@ -11,6 +12,8 @@ import { Article } from '../model/article';
 })
 export class UpdateArticleComponent implements OnInit {
   article?: Article;
+  loading: boolean = false;
+  artileType: string = 'Edit Article';
   profileForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -31,7 +34,9 @@ export class UpdateArticleComponent implements OnInit {
         this.articleService.getArticle(slug).subscribe((data) => {
           console.log(data);
           if (data !== undefined) {
+            this.loading = true;
             this.article = data.article;
+
             console.log(this.article.title);
             this.profileForm.setValue({
               title: this.article.title,
@@ -45,27 +50,11 @@ export class UpdateArticleComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.profileForm.value.tagList);
-    let tagList: string[] = [];
-    if (this.profileForm.value.tagList !== this.article?.tagList) {
-      tagList = this.profileForm.value.tagList.split(',', -1);
-    } else {
-      tagList = this.profileForm.value.tagList;
-    }
-
-    let art = {
-      article: {
-        title: this.profileForm.value.title,
-        description: this.profileForm.value.description,
-        body: this.profileForm.value.body,
-        tagList: tagList,
-      },
-    };
+  onSubmit(articleData: NewArticleObj) {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       let slug = params.get('slug');
       if (slug !== null) {
-        this.articleService.updateArticle(art.article, slug).subscribe(
+        this.articleService.updateArticle(articleData.article, slug).subscribe(
           (data) => {
             console.log(data);
             this.profileForm.reset();

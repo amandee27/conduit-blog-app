@@ -19,6 +19,7 @@ import { AuthorProfileComponent } from './author-profile/author-profile.componen
 import { ArticleComponent } from './article/article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
+import { BasicArticleComponent } from './basic-article/basic-article.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
     ArticleComponent,
     NewArticleComponent,
     UpdateArticleComponent,
+    BasicArticleComponent,
   ],
   imports: [
     BrowserModule,

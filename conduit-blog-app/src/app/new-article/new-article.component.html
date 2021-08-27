@@ -1,4 +1,4 @@
-<div class="container pt-4">
+<!-- <div class="container pt-4">
     <div class="text-center py-2">
         <h3>Create Article</h3>
     </div>
@@ -33,5 +33,7 @@
             </div>
           </div>
     </form>
-</div>
+</div> -->
+
+<app-basic-article [typeArticle]='articleDetail' (editFormData)='onSubmit($event)'></app-basic-article>
 
