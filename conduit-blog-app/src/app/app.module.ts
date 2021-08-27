@@ -18,6 +18,7 @@ import { ValidationDirective } from './validation.directive';
 import { AuthorProfileComponent } from './author-profile/author-profile.component';
 import { ArticleComponent } from './article/article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NewArticleComponent } from './new-article/new-article.component';
     AuthorProfileComponent,
     ArticleComponent,
     NewArticleComponent,
+    UpdateArticleComponent,
   ],
   imports: [
     BrowserModule,

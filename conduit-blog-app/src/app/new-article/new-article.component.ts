@@ -7,6 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-new-article',
@@ -34,8 +35,13 @@ export class NewArticleComponent implements OnInit {
         tagList: tagList,
       },
     };
-    this.articleService.createArticle(art.article).subscribe((data) => {
-      this.profileForm.reset();
-    });
+    this.articleService.createArticle(art.article).subscribe(
+      (data) => {
+        this.profileForm.reset();
+      },
+      (error) => {
+        console.log(error.errors.message);
+      }
+    );
   }
 }

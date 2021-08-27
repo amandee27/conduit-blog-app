@@ -47,6 +47,28 @@ export class ArticleService {
     return this._http.get<ArticleObj>(request, httpOptions);
   }
 
+  getUserArticles(user: string) {
+    let autherizationHeader = this.getAuthHeader();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+      params: { author: user },
+    };
+    return this._http.get<Articles>(this._getArticles, httpOptions);
+  }
+  updateArticle(updatedArticle: NewArticle, slug: string) {
+    let editArticle = { article: updatedArticle };
+    let autherizationHeader = this.getAuthHeader();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    let link = this._createArticles + '/' + slug;
+    return this._http.put<ArticleObj>(link, editArticle, httpOptions);
+  }
+
   getAuthHeader(): string {
     const prefix: string = 'Token ';
     const token = localStorage.token;
