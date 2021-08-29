@@ -57,6 +57,10 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/profile/edit-article', slug]);
   }
 
+  editProfile() {
+    this.router.navigate(['/profile/update-profile']);
+  }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

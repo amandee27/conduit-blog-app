@@ -9,6 +9,7 @@ import { ArticleComponent } from './article/article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
 import { BasicArticleComponent } from './basic-article/basic-article.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'profile/new-article', component: NewArticleComponent },
   { path: 'profile/edit-article/:slug', component: UpdateArticleComponent },
   { path: 'profile/basic-article', component: BasicArticleComponent },
+  { path: 'profile/update-profile', component: UpdateUserComponent },
   { path: '**', redirectTo: '' },
 ];
 

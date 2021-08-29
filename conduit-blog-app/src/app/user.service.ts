@@ -4,6 +4,7 @@ import { User } from './model/user';
 import { UserDetail } from './model/userDetail';
 import { NewUser } from './model/newUser';
 import { ProfileObj } from './model/article';
+import { UpdatedUser } from './model/updatedUser';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +46,22 @@ export class UserService {
     return this._http.get<ProfileObj>(url, httpOptions);
   }
 
+  updateProfile(profile: UpdatedUser) {
+    let autherizationHeader = this.getAuthHeader();
+    let updatedUserDetail = {
+      user: profile,
+    };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.put<UpdatedUser>(
+      this._urlNew,
+      updatedUserDetail,
+      httpOptions
+    );
+  }
   getAuthHeader(): string {
     const prefix: string = 'Token ';
     const token = localStorage.token;
