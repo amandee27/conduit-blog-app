@@ -20,5 +20,14 @@
             <small><p>{{comment.body}}</p></small>
             <hr>
         </div>
+        <div>
+            <form class="form-inline py-3 px-2" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="comment" class="sr-only">Comment</label>
+                    <input type="text" class="form-control comment" id="comment" formControlName="comment" placeholder="Add Comment" >
+                </div>
+                <button type="submit" class="btn btn-primary mx-2">Add Comment</button>
+            </form>
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Article } from '../model/article';
 import { ArticleService } from '../article.service';
 import { Comments, Comment } from '../model/comments';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-article',
@@ -12,6 +13,9 @@ import { Comments, Comment } from '../model/comments';
 export class ArticleComponent implements OnInit {
   article?: Article;
   comments?: Comment[];
+  commentForm = new FormGroup({
+    comment: new FormControl(''),
+  });
   constructor(
     private activateRouter: ActivatedRoute,
     private articleService: ArticleService,
@@ -34,5 +38,17 @@ export class ArticleComponent implements OnInit {
 
   viewAuthor(author?: string) {
     this.route.navigate(['/author-profile', author]);
+  }
+  onSubmit() {
+    this.activateRouter.paramMap.subscribe((params: ParamMap) => {
+      let slug = params.get('slug');
+      let comment: Comment = this.commentForm.value.comment;
+      console.log(slug);
+      if (slug !== null) {
+        this.articleService.createComment(slug, comment).subscribe((data) => {
+          console.log(data);
+        });
+      }
+    });
   }
 }

@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Articles, ArticleObj } from './model/article';
 import { NewArticle } from './model/newArticle';
+import { NewComment, CommentObj } from './model/newComment';
+import { Comment } from './model/comments';
 
 @Injectable({
   providedIn: 'root',
@@ -80,6 +82,22 @@ export class ArticleService {
     return this._http.get<any>(link, httpOptions);
   }
 
+  createComment(slug: string, comment: NewComment) {
+    let link = this._getArticles + '/' + slug + '/comments';
+    let autherizationHeader = this.getAuthHeader();
+    let newcomment = {
+      comment: {
+        body: comment,
+      },
+    };
+    console.log(newcomment);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.post<Comment>(link, { newcomment }, httpOptions);
+  }
   getAuthHeader(): string {
     const prefix: string = 'Token ';
     const token = localStorage.token;
