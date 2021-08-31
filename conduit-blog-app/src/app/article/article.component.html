@@ -13,4 +13,12 @@
     <div class="container py-3 px-3">
         <p>{{article.body}}</p>
     </div>
+    <div class="commentBox pt-2 px-2">
+        <h6>Comments</h6>
+        <div *ngFor="let comment of comments;" class="px-2 py-2">
+            <small class="text-muted">{{comment.author.username|titlecase}} . {{comment.createdAt|date:'short'}}</small>
+            <small><p>{{comment.body}}</p></small>
+            <hr>
+        </div>
+    </div>
 </div>

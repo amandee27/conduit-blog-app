@@ -69,6 +69,17 @@ export class ArticleService {
     return this._http.put<ArticleObj>(link, editArticle, httpOptions);
   }
 
+  getComments(slug: string) {
+    let link = this._getArticles + '/' + slug + '/comments';
+    let autherizationHeader = this.getAuthHeader();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    return this._http.get<any>(link, httpOptions);
+  }
+
   getAuthHeader(): string {
     const prefix: string = 'Token ';
     const token = localStorage.token;

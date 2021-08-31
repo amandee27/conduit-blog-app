@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Article } from '../model/article';
 import { ArticleService } from '../article.service';
+import { Comments, Comment } from '../model/comments';
 
 @Component({
   selector: 'app-article',
@@ -10,6 +11,7 @@ import { ArticleService } from '../article.service';
 })
 export class ArticleComponent implements OnInit {
   article?: Article;
+  comments?: Comment[];
   constructor(
     private activateRouter: ActivatedRoute,
     private articleService: ArticleService,
@@ -22,6 +24,9 @@ export class ArticleComponent implements OnInit {
       if (slug !== null) {
         this.articleService.getArticle(slug).subscribe((data) => {
           this.article = data.article;
+        });
+        this.articleService.getComments(slug).subscribe((data) => {
+          this.comments = data.comments;
         });
       }
     });
