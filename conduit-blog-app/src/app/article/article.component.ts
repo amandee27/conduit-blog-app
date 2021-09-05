@@ -13,6 +13,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ArticleComponent implements OnInit {
   article?: Article;
   comments?: Comment[];
+  newComment?: Comment;
+  slug: string | null = 'abc';
+  loadedArticle: boolean = false;
   commentForm = new FormGroup({
     comment: new FormControl(''),
   });
@@ -24,13 +27,11 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.activateRouter.paramMap.subscribe((params: ParamMap) => {
-      let slug = params.get('slug');
-      if (slug !== null) {
-        this.articleService.getArticle(slug).subscribe((data) => {
+      this.slug = params.get('slug');
+      if (this.slug !== null) {
+        this.articleService.getArticle(this.slug).subscribe((data) => {
+          this.loadedArticle = true;
           this.article = data.article;
-        });
-        this.articleService.getComments(slug).subscribe((data) => {
-          this.comments = data.comments;
         });
       }
     });
@@ -39,16 +40,16 @@ export class ArticleComponent implements OnInit {
   viewAuthor(author?: string) {
     this.route.navigate(['/author-profile', author]);
   }
-  onSubmit() {
-    this.activateRouter.paramMap.subscribe((params: ParamMap) => {
-      let slug = params.get('slug');
-      let comment: Comment = this.commentForm.value.comment;
-      console.log(slug);
-      if (slug !== null) {
-        this.articleService.createComment(slug, comment).subscribe((data) => {
-          console.log(data);
-        });
-      }
-    });
-  }
+  // onSubmit() {
+  //   this.activateRouter.paramMap.subscribe((params: ParamMap) => {
+  //     let slug = params.get('slug');
+  //     let comment: Comment = this.commentForm.value.comment;
+  //     console.log(slug);
+  //     if (slug !== null) {
+  //       this.articleService.createComment(slug, comment).subscribe((data) => {
+  //         console.log(data);
+  //       });
+  //     }
+  //   });
+  // }
 }

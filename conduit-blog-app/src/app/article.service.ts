@@ -82,7 +82,7 @@ export class ArticleService {
     return this._http.get<any>(link, httpOptions);
   }
 
-  createComment(slug: string, comment: NewComment) {
+  createComment(slug: string, comment: string) {
     let link = this._getArticles + '/' + slug + '/comments';
     let autherizationHeader = this.getAuthHeader();
     let newcomment = {
@@ -96,7 +96,7 @@ export class ArticleService {
         Authorization: autherizationHeader,
       }),
     };
-    return this._http.post<Comment>(link, { newcomment }, httpOptions);
+    return this._http.post<Comment>(link, newcomment, httpOptions);
   }
   getAuthHeader(): string {
     const prefix: string = 'Token ';

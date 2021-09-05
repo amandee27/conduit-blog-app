@@ -21,6 +21,7 @@ import { NewArticleComponent } from './new-article/new-article.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
 import { BasicArticleComponent } from './basic-article/basic-article.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { CommentComponent } from './article/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     UpdateArticleComponent,
     BasicArticleComponent,
     UpdateUserComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
