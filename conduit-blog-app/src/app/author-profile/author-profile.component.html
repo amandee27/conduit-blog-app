@@ -28,8 +28,8 @@
                     </div>
                   </div>
                   <div class="row mx-2 my-3">
-                      <button class="btn-success buttonFormat" *ngIf="!author?.following">Follow</button>
-                      <button class="btn-success buttonFormat" *ngIf="author?.following">Following</button>
+                      <button class="btn-success buttonFormat" *ngIf="!following" (click)="followUser()">Follow</button>
+                      <button class="btn-success buttonFormat" *ngIf="following" (click)="unfollowUser()">Unfollow</button>
                   </div>
                   <div class="col text-right ">
                     <span class="mr-2">

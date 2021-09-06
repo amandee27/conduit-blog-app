@@ -13,6 +13,7 @@ export class AuthorProfileComponent implements OnInit {
   author?: Profile;
   faGithub = faGithub;
   faLinkedinIn = faLinkedinIn;
+  following: boolean = false;
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute
@@ -24,6 +25,28 @@ export class AuthorProfileComponent implements OnInit {
       if (authorId !== null) {
         this.userService.getProfile(authorId).subscribe((data) => {
           this.author = data.profile;
+        });
+      }
+    });
+  }
+
+  followUser() {
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      let authorId = params.get('author');
+      if (authorId !== null) {
+        this.userService.followProfile(authorId).subscribe((data) => {
+          this.following = data.profile.following;
+        });
+      }
+    });
+  }
+
+  unfollowUser() {
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      let authorId = params.get('author');
+      if (authorId !== null) {
+        this.userService.unfollowUser(authorId).subscribe((data) => {
+          this.following = data.profile.following;
         });
       }
     });

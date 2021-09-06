@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './model/user';
 import { UserDetail } from './model/userDetail';
 import { NewUser } from './model/newUser';
-import { ProfileObj } from './model/article';
+import { ProfileObj, Profile } from './model/article';
 import { UpdatedUser } from './model/updatedUser';
 
 @Injectable({
@@ -61,6 +61,28 @@ export class UserService {
       updatedUserDetail,
       httpOptions
     );
+  }
+
+  followProfile(name: string) {
+    let autherizationHeader = this.getAuthHeader();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    let _url = this._getProfile + name + '/follow';
+    return this._http.post<ProfileObj>(_url, {}, httpOptions);
+  }
+
+  unfollowUser(name: string) {
+    let autherizationHeader = this.getAuthHeader();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: autherizationHeader,
+      }),
+    };
+    let _url = this._getProfile + name + '/follow';
+    return this._http.delete<ProfileObj>(_url, httpOptions);
   }
   getAuthHeader(): string {
     const prefix: string = 'Token ';
