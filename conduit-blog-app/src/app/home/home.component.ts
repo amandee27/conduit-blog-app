@@ -4,6 +4,7 @@ import { UserDetailService } from '../user-detail.service';
 import { Article } from '../model/article';
 import { Router } from '@angular/router';
 import { ArticleService } from '../article.service';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
   isSignedIn: boolean = false;
   articles?: Article[];
+  articleTime?: number = 0;
 
   constructor(
     private userDetailService: UserDetailService,
@@ -27,15 +29,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.articleService.getArticles().subscribe((data) => {
       this.articles = data.articles;
+      var CurrentDate = moment().format();
+      console.log(CurrentDate);
+      console.log(this.articles?.[0].createdAt);
+      var a = moment(CurrentDate);
+      var b = moment(this.articles?.[0].createdAt);
+      console.log(a.diff(b, 'days'));
+      this.articleTime = a.diff(b, 'days');
+      if (this.articleTime < 1) {
+        this.articleTime = a.diff(b, 'hours');
+      }
     });
-  }
-
-  viewArticle(slug: string) {
-    this.router.navigate(['./articles', slug]);
-  }
-
-  viewAuthor(author: string) {
-    this.router.navigate(['/author-profile', author]);
   }
 
   ngOnDestroy() {

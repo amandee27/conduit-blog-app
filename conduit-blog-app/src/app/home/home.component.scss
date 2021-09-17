@@ -11,39 +11,3 @@ h3 {
 .logo {
   margin-top: 1em;
 }
-
-.articleImage {
-  height: 20px;
-  width: 20px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.username {
-  color: gray;
-  text-transform: capitalize;
-  margin-left: 10px;
-}
-a:hover {
-  text-decoration: none;
-}
-.username:hover {
-  color: black;
-  text-decoration: none;
-}
-::ng-deep .tooltip-inner {
-  background-color: grey;
-  color: #fff;
-  border: black solid 1px;
-}
-.tooltipFormat {
-  color: black;
-}
-button {
-  border-radius: 15%;
-  box-shadow: 0px 0px;
-  background-color: #009daa;
-  border: none;
-  color: white;
-  font-size: small;
-  font-weight: bold;
-}

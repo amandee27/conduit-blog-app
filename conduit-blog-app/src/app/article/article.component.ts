@@ -16,6 +16,7 @@ export class ArticleComponent implements OnInit {
   newComment?: Comment;
   slug: string | null = 'abc';
   loadedArticle: boolean = false;
+  articleImage: string = '../../assets/articleCover1.jpg';
   commentForm = new FormGroup({
     comment: new FormControl(''),
   });

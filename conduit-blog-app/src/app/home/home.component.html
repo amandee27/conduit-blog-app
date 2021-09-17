@@ -14,7 +14,6 @@
   <ng-template ngbSlide>
     
     <div class="picsum-img-wrapper">
-      <!-- <div style="background-color: darkgray;width: 100%; height: 400px;"></div> -->
       <img src="../../assets/c.jfif" alt="" style="width: 100%; height: 400px; object-fit: cover;">
     </div>
     <div class="carousel-caption" style="color:#BBBBBB">
@@ -23,45 +22,8 @@
     </div>
   </ng-template>
 </ngb-carousel>
-<div *ngIf="isSignedIn" class="pt-3" >
 
-  <div class="card mt-3"  *ngFor="let article of articles; index as i;">
-    <div class="card-header">
-      {{article.description}}
-    </div>
-    <div class="card-body">
-      <div class=" my-2">
-        <ng-template #tipContent >
-          <div>
-            <img class="articleImage" [src]="article.author.image" alt="">
-            <a class="text-muted" (click)="viewAuthor(article.author.username)"  class="tooltipFormat">
-              <b class="mx-1">{{article.author.username|titlecase}}</b>
-            </a>
-          </div>
-          <div>
-            <span><small>{{article.author.bio}}</small></span>
-          </div>
-        </ng-template>
-        <a (click)="viewAuthor(article.author.username)">
-          <span class="username" [ngbTooltip]="tipContent"><small>{{article.author.username}}</small></span>
-          <span class="mx-1 text-muted">.</span>
-          <span class="text-muted mr-1"><small>Created at</small></span>
-          <span class="text-muted"><small>{{article.createdAt|date:'short'}}</small></span>
-        </a>
-        <span class=" float-right">
-          <span class="text-muted mr-1"><small>Updated at</small></span>
-        <span class="text-muted"><small>{{article.updatedAt|date:'short'}}</small></span>
-        </span>
-      </div>
-      <h5 class="card-title"> {{article.title}}</h5>
-      <!-- <img class="card-img-left articleImage" [src]="image" alt="Card image cap"> -->
-      <p class="card-text">{{article.body}}</p>
-      <div ><span class="badge badge-secondary mx-2 my-2" *ngFor="let tag of article.tagList">{{tag}}</span></div>
-      
-      <button  (click)="viewArticle(article.slug)">Read</button>
-    </div>
-  </div>
-</div>
+<app-article-list [homeArticles]="articles" [homeArticleTime]="articleTime" [isSignedIn]="isSignedIn"></app-article-list>
 
      
  
