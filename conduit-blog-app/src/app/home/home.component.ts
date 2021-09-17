@@ -29,16 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.articleService.getArticles().subscribe((data) => {
       this.articles = data.articles;
-      var CurrentDate = moment().format();
-      console.log(CurrentDate);
-      console.log(this.articles?.[0].createdAt);
-      var a = moment(CurrentDate);
-      var b = moment(this.articles?.[0].createdAt);
-      console.log(a.diff(b, 'days'));
-      this.articleTime = a.diff(b, 'days');
-      if (this.articleTime < 1) {
-        this.articleTime = a.diff(b, 'hours');
-      }
     });
   }
 

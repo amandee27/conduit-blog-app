@@ -28,7 +28,7 @@
               </div>
             </ng-template>
             <a (click)="viewAuthor(article.author.username)">
-              <span class="text-muted mr-1" ><small>{{this.homeArticleTime}} Days ago</small></span>
+              <span class="text-muted mr-1" ><small>{{getRelativeDate(article.createdAt)}}</small></span>
               <span class="mx-1 text-muted">.</span>
               <span class="username" [ngbTooltip]="tipContent"><small>{{article.author.username}}</small></span>
 

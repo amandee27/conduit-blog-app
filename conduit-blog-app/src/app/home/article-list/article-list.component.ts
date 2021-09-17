@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from '../../model/article';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-article-list',
@@ -12,6 +13,7 @@ export class ArticleListComponent implements OnInit {
   @Input() homeArticleTime?: number;
   @Input() isSignedIn: boolean = false;
   articleImage: string = '../../assets/articleCover1.jpg';
+  currentDate = moment();
 
   constructor(private router: Router) {}
 
@@ -22,5 +24,12 @@ export class ArticleListComponent implements OnInit {
 
   viewAuthor(author: string) {
     this.router.navigate(['/author-profile', author]);
+  }
+
+  getRelativeDate(date: string): string {
+    if (date) {
+      return moment(date).fromNow();
+    }
+    return '';
   }
 }
